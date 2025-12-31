@@ -7,13 +7,34 @@
     <meta name="keywords" content="TitanFlow, customer automation, AI communication, service business, SMS automation, email automation">
     <meta name="author" content="TitanFlow">
     <meta property="og:title" content="TitanFlow - Customer Communication Automation">
-    <meta property="og:description" content="Automate customer follow-ups, booking, and retention workflows with reliable AI">
+    <meta property="og:description" content="Never Miss Another Lead!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://neoseek.github.io/TitanFlow/">
+    <meta property="og:url" content="https://titanflow.tech/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TitanFlow - Customer Communication Automation">
-    <meta name="twitter:description" content="Automate customer follow-ups, booking, and retention workflows with reliable AI">
+    <meta name="twitter:description" content="Never Miss Another Lead!">
     <title>TitanFlow - Customer Communication Automation</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'Home',
+            page_location: window.location.href
+        });
+        
+        // Track button clicks
+        function trackEvent(action, category = 'engagement') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': window.location.pathname
+            });
+        }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -622,6 +643,374 @@
             30% { transform: translateY(-4px); }
         }
 
+        /* Contact Capture Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, var(--card-bg), rgba(30, 58, 95, 0.3));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 229, 160, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8) translateY(30px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-white);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--text-white);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: var(--text-white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Early Access Banner */
+        .early-access-banner {
+            background: linear-gradient(135deg, rgba(0, 229, 160, 0.1), rgba(99, 102, 241, 0.1));
+            border: 1px solid rgba(0, 229, 160, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .early-access-banner h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+        }
+
+        .early-access-banner p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .early-access-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            align-items: flex-end;
+        }
+
+        .early-access-form input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: var(--text-white);
+            font-size: 1rem;
+        }
+
+        .early-access-form input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .early-access-form input::placeholder {
+            color: var(--text-light);
+        }
+
+        .early-access-form .btn {
+            padding: 0.8rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        /* Thank You Confirmation Page */
+        .thank-you-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(160deg, #0A1628 0%, #1E3A5F 50%, #0F2744 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .thank-you-page.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .thank-you-content {
+            max-width: 600px;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+
+        .thank-you-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-green), #00C78A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            animation: bounce 1s ease-out 0.8s both;
+        }
+
+        .thank-you-content h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .thank-you-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you-details {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 229, 160, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you-details h3 {
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: left;
+        }
+
+        .confirmation-info div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .confirmation-info div:last-child {
+            border-bottom: none;
+        }
+
+        .confirmation-info span:first-child {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .confirmation-info span:last-child {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .next-steps h4 {
+            color: var(--accent-purple);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .next-steps li {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .next-steps li::before {
+            content: '✓';
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        .return-button {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .return-button:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0, 0, 0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -15px, 0);
+            }
+            70% {
+                transform: translate3d(0, -7px, 0);
+            }
+            90% {
+                transform: translate3d(0, -2px, 0);
+            }
+        }
+
+        /* Form Validation Styles */
+        .form-error {
+            border-color: #e74c3c !important;
+            background: rgba(231, 76, 60, 0.1) !important;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
         /* Footer */
         footer {
             position: relative;
@@ -712,6 +1101,42 @@
             .feature-card {
                 padding: 2rem 1.5rem;
             }
+
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .early-access-form {
+                flex-direction: column;
+                gap: 1rem;
+                max-width: 100%;
+            }
+
+            .early-access-form .btn {
+                width: 100%;
+            }
+
+            .thank-you-content h2 {
+                font-size: 2rem;
+            }
+
+            .thank-you-content p {
+                font-size: 1rem;
+            }
+
+            .confirmation-info {
+                text-align: center;
+            }
+
+            .confirmation-info div {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
         }
     </style>
 </head>
@@ -760,13 +1185,29 @@
             </div>
             
             <div class="container">
-                <h2>Automate Customer Communication Without Hiring More Staff</h2>
-                <p>TitanFlow handles your customer follow-ups, appointment booking, and retention workflows automatically—so you can focus on growth instead of repetitive communication.</p>
+                <h2>Never Miss Another Lead! Respond Instantly 24/7</h2>
+                <p>Automatically respond to new leads from SMS, email, website forms, and social media. Qualify prospects instantly and hand off hot leads to your team.</p>
                 <div class="cta-buttons">
-                    <a href="pricing.html" class="btn btn-primary">Get Started</a>
-                    <a href="features.html" class="btn btn-secondary">Watch Demo</a>
+                    <button onclick="openContactModal('early-access')" class="btn btn-primary">Get Early Access</button>
+                    <a href="features.html" onclick="trackEvent('view_features')" class="btn btn-secondary">See How It Works</a>
                 </div>
             </div>
+        </section>
+
+        <section class="early-access-banner">
+            <h3>🚀 Early Access Available</h3>
+            <p>Be among the first to automate your customer workflows. Get priority access and special pricing.</p>
+            <form class="early-access-form" onsubmit="submitEarlyAccess(event)">
+                <div style="flex: 1;">
+                    <input type="email" placeholder="Enter your email address" required id="earlyAccessEmail">
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                <div style="flex: 1;">
+                    <input type="tel" placeholder="Phone number" required id="earlyAccessPhone">
+                    <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Join Waitlist</button>
+            </form>
         </section>
 
         <section class="features-preview">
@@ -796,7 +1237,454 @@
         </div>
     </footer>
 
+    <!-- Thank You Confirmation Page -->
+    <div class="thank-you-page" id="thankYouPage">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">✓</div>
+            <h2>Welcome to the TitanFlow Family!</h2>
+            <p>Thank you for joining our early access waitlist. We've received your information and you're officially on the list.</p>
+            
+            <div class="thank-you-details">
+                <h3>Confirmation Details</h3>
+                <div class="confirmation-info" id="confirmationInfo">
+                    <div>
+                        <span>Email:</span>
+                        <span id="confirmedEmail"></span>
+                    </div>
+                    <div>
+                        <span>Phone:</span>
+                        <span id="confirmedPhone"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h4>What happens next?</h4>
+                <ul>
+                    <li>You'll receive an email confirmation within 5 minutes</li>
+                    <li>We'll notify you as we get closer to launch</li>
+                    <li>Early access users get 50% off first 3 months</li>
+                    <li>Priority onboarding and setup support</li>
+                </ul>
+            </div>
+
+            <button class="return-button" onclick="returnToHome()">Return to Homepage</button>
+        </div>
+    </div>
+
+    <!-- Contact Capture Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Get Early Access to TitanFlow</h3>
+                <p>Join 200+ service businesses automating customer workflows</p>
+            </div>
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Business Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry" required>
+                            <option value="">Select Industry</option>
+                            <option value="hvac">HVAC</option>
+                            <option value="auto-repair">Auto Repair</option>
+                            <option value="home-services">Home Services</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="beauty">Beauty & Wellness</option>
+                            <option value="professional">Professional Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamSize">Team Size</label>
+                        <select id="teamSize" name="teamSize" required>
+                            <option value="">Select Size</option>
+                            <option value="1-5">1-5 people</option>
+                            <option value="6-20">6-20 people</option>
+                            <option value="21-50">21-50 people</option>
+                            <option value="50+">50+ people</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="currentChallenges">Current Communication Challenges</label>
+                    <textarea id="currentChallenges" name="currentChallenges" rows="3" placeholder="What customer communication tasks take up most of your time?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Get Early Access</button>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // Contact Modal Management
+        function openContactModal(source = 'unknown') {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track modal open
+            trackEvent('open_contact_modal', 'lead_generation', source);
+            
+            // Set focus to first input
+            setTimeout(() => {
+                document.getElementById('firstName').focus();
+            }, 300);
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('contactModal').classList.contains('active')) {
+                closeContactModal();
+            }
+        });
+
+        // Contact Form Submission
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = {};
+            
+            // Collect form data
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Add metadata
+            data.source = 'website';
+            data.page = 'home';
+            data.timestamp = new Date().toISOString();
+            data.userAgent = navigator.userAgent;
+            data.referrer = document.referrer;
+            
+            // Track conversion
+            trackEvent('submit_contact_form', 'conversion', 'detailed_form');
+            
+            // Store in localStorage for now (in production, send to your backend)
+            const leads = JSON.parse(localStorage.getItem('titanflow_leads') || '[]');
+            leads.push(data);
+            localStorage.setItem('titanflow_leads', JSON.stringify(leads));
+            
+            // Show success message
+            showSuccessMessage('Thanks! We\'ll be in touch within 24 hours.');
+            closeContactModal();
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Form Validation Functions
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                return { isValid: false, message: 'Please enter a valid email address' };
+            }
+            
+            return { isValid: true };
+        }
+
+        function validatePhone(phone) {
+            // Remove all non-digit characters
+            const cleanPhone = phone.replace(/\D/g, '');
+            
+            // Check if it's a valid length (10-15 digits)
+            if (cleanPhone.length < 10 || cleanPhone.length > 15) {
+                return { isValid: false, message: 'Please enter a valid phone number (10-15 digits)' };
+            }
+            
+            // US phone number format check
+            const usPhoneRegex = /^(\+?1)?[2-9]\d{2}[2-9]\d{2}\d{4}$/;
+            if (cleanPhone.length === 10 || (cleanPhone.length === 11 && cleanPhone.startsWith('1'))) {
+                if (!usPhoneRegex.test(cleanPhone)) {
+                    return { isValid: false, message: 'Please enter a valid US phone number' };
+                }
+            }
+            
+            return { isValid: true, cleanPhone: cleanPhone };
+        }
+
+        function showFieldError(fieldId, errorId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(errorId);
+            
+            field.classList.add('form-error');
+            error.textContent = message;
+            error.classList.add('show');
+        }
+
+        function hideFieldError(fieldId, errorId) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(errorId);
+            
+            field.classList.remove('form-error');
+            error.classList.remove('show');
+        }
+
+        // Early Access Form Submission
+        function submitEarlyAccess(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('earlyAccessEmail').value.trim();
+            const phone = document.getElementById('earlyAccessPhone').value.trim();
+            
+            // Clear previous errors
+            hideFieldError('earlyAccessEmail', 'emailError');
+            hideFieldError('earlyAccessPhone', 'phoneError');
+            
+            let isValid = true;
+            
+            // Validate email
+            const emailValidation = validateEmail(email);
+            if (!emailValidation.isValid) {
+                showFieldError('earlyAccessEmail', 'emailError', emailValidation.message);
+                isValid = false;
+            }
+            
+            // Validate phone
+            const phoneValidation = validatePhone(phone);
+            if (!phoneValidation.isValid) {
+                showFieldError('earlyAccessPhone', 'phoneError', phoneValidation.message);
+                isValid = false;
+            }
+            
+            // If validation fails, don't submit
+            if (!isValid) {
+                trackEvent('form_validation_error', 'conversion', 'early_access');
+                return;
+            }
+            
+            const data = {
+                email: email,
+                phone: phoneValidation.cleanPhone,
+                source: 'early_access',
+                page: 'home',
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
+            };
+            
+            // Track successful conversion
+            trackEvent('submit_early_access', 'conversion', 'email_capture');
+            
+            // Store lead
+            const leads = JSON.parse(localStorage.getItem('titanflow_leads') || '[]');
+            leads.push(data);
+            localStorage.setItem('titanflow_leads', JSON.stringify(leads));
+            
+            // Show thank you page
+            showThankYouPage(email, phoneValidation.cleanPhone);
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Thank You Page Functions
+        function showThankYouPage(email, phone) {
+            // Format phone number for display
+            const formattedPhone = formatPhoneNumber(phone);
+            
+            // Update confirmation details
+            document.getElementById('confirmedEmail').textContent = email;
+            document.getElementById('confirmedPhone').textContent = formattedPhone;
+            
+            // Show thank you page
+            document.getElementById('thankYouPage').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track thank you page view
+            trackEvent('view_thank_you', 'conversion', 'early_access');
+        }
+
+        function formatPhoneNumber(phone) {
+            // Format US phone numbers as (XXX) XXX-XXXX
+            if (phone.length === 10) {
+                return `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6)}`;
+            } else if (phone.length === 11 && phone.startsWith('1')) {
+                const number = phone.slice(1);
+                return `+1 (${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6)}`;
+            }
+            return phone; // Return as-is for international numbers
+        }
+
+        function returnToHome() {
+            document.getElementById('thankYouPage').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            trackEvent('return_from_thank_you', 'navigation');
+        }
+
+        // Success Message Display
+        function showSuccessMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #00E5A0, #00C78A);
+                color: #0A1628;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            successDiv.textContent = message;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(successDiv);
+                }, 300);
+            }, 3000);
+        }
+
+        // Page Analytics
+        function trackPageView() {
+            trackEvent('page_view', 'navigation');
+            
+            // Track time on page
+            const startTime = Date.now();
+            
+            window.addEventListener('beforeunload', function() {
+                const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                if (timeSpent > 5) { // Only track if they spent more than 5 seconds
+                    trackEvent('time_on_page', 'engagement', timeSpent.toString());
+                }
+            });
+        }
+
+        // Scroll Tracking
+        function setupScrollTracking() {
+            let maxScroll = 0;
+            let tracked25 = false, tracked50 = false, tracked75 = false, tracked100 = false;
+            
+            window.addEventListener('scroll', function() {
+                const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                maxScroll = Math.max(maxScroll, scrollPercent);
+                
+                // Track milestone scrolls
+                if (scrollPercent >= 25 && !tracked25) {
+                    tracked25 = true;
+                    trackEvent('scroll_25', 'engagement');
+                }
+                if (scrollPercent >= 50 && !tracked50) {
+                    tracked50 = true;
+                    trackEvent('scroll_50', 'engagement');
+                }
+                if (scrollPercent >= 75 && !tracked75) {
+                    tracked75 = true;
+                    trackEvent('scroll_75', 'engagement');
+                }
+                if (scrollPercent >= 100 && !tracked100) {
+                    tracked100 = true;
+                    trackEvent('scroll_100', 'engagement');
+                }
+            });
+        }
+
+        // Traffic Source Detection
+        function detectTrafficSource() {
+            const referrer = document.referrer;
+            const params = new URLSearchParams(window.location.search);
+            
+            let source = 'direct';
+            let medium = 'none';
+            
+            // UTM parameters
+            if (params.get('utm_source')) {
+                source = params.get('utm_source');
+                medium = params.get('utm_medium') || 'unknown';
+            }
+            // Social media
+            else if (referrer.includes('facebook.com')) {
+                source = 'facebook';
+                medium = 'social';
+            }
+            else if (referrer.includes('twitter.com') || referrer.includes('t.co')) {
+                source = 'twitter';
+                medium = 'social';
+            }
+            else if (referrer.includes('linkedin.com')) {
+                source = 'linkedin';
+                medium = 'social';
+            }
+            // Search engines
+            else if (referrer.includes('google.com')) {
+                source = 'google';
+                medium = 'organic';
+            }
+            else if (referrer.includes('bing.com')) {
+                source = 'bing';
+                medium = 'organic';
+            }
+            // Other referrals
+            else if (referrer && referrer !== window.location.origin) {
+                source = new URL(referrer).hostname;
+                medium = 'referral';
+            }
+            
+            // Track traffic source
+            trackEvent('traffic_source', 'attribution', `${source}/${medium}`);
+            
+            return { source, medium };
+        }
+
+        // Initialize Analytics
+        document.addEventListener('DOMContentLoaded', function() {
+            trackPageView();
+            setupScrollTracking();
+            detectTrafficSource();
+            
+            // Track feature card interactions
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    trackEvent('hover_feature_card', 'engagement', `card_${index + 1}`);
+                });
+            });
+            
+            // Track outbound link clicks
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    trackEvent('external_link_click', 'navigation', this.href);
+                });
+            });
+        });
+
         // Subtle Phone Animation Controller
         class PhoneDemoAnimator {
             constructor() {

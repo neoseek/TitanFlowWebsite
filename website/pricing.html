@@ -11,6 +11,27 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://neoseek.github.io/TitanFlow/pricing.html">
     <title>Pricing - TitanFlow Customer Automation</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'Pricing',
+            page_location: window.location.href
+        });
+        
+        // Track button clicks
+        function trackEvent(action, category = 'engagement') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': window.location.pathname
+            });
+        }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -585,7 +606,7 @@
                             <li>Basic integrations</li>
                             <li>Email support</li>
                         </ul>
-                        <a href="#" class="btn btn-secondary">Start Free Trial</a>
+                        <button onclick="requestTrial('essential')" class="btn btn-secondary">Request Trial Access</button>
                     </div>
 
                     <div class="plan-card featured">
@@ -605,7 +626,7 @@
                             <li>CRM integrations</li>
                             <li>Priority support</li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                        <button onclick="requestTrial('professional')" class="btn btn-primary">Request Trial Access</button>
                     </div>
 
                     <div class="plan-card">
@@ -622,7 +643,7 @@
                             <li>Custom integrations</li>
                             <li>24/7 phone support</li>
                         </ul>
-                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                        <button onclick="contactSales()" class="btn btn-secondary">Contact Sales</button>
                     </div>
                 </div>
             </div>
@@ -657,6 +678,81 @@
         </div>
     </footer>
 
+    <script>
+        // Pricing-specific functions
+        function requestTrial(plan) {
+            trackEvent('request_trial', 'conversion', plan);
+            
+            const subject = `Trial Request - ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`;
+            const body = `Hi TitanFlow team,%0A%0AI'm interested in a trial of the ${plan} plan.%0A%0ABusiness Name: %0AIndustry: %0ANumber of customers: %0ACurrent communication challenges: %0A%0APlease send me trial access details.%0A%0AThanks!`;
+            
+            window.location.href = `mailto:hello@titanflow.tech?subject=${subject}&body=${body}`;
+        }
+
+        function contactSales() {
+            trackEvent('contact_sales', 'conversion', 'enterprise');
+            
+            const subject = 'Enterprise Sales Inquiry';
+            const body = 'Hi,%0A%0AI\'m interested in discussing TitanFlow Enterprise for my business.%0A%0ACompany: %0AIndustry: %0ATeam size: %0AMonthly customer volume: %0ASpecific requirements: %0A%0APlease contact me to schedule a demo.%0A%0AThanks!';
+            
+            window.location.href = `mailto:sales@titanflow.tech?subject=${subject}&body=${body}`;
+        }
+
+        // Page Analytics
+        function trackPageView() {
+            trackEvent('page_view', 'navigation');
+        }
+
+        // Pricing interaction tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            trackPageView();
+            
+            // Track plan card interactions
+            document.querySelectorAll('.plan-card').forEach((card, index) => {
+                const planNames = ['essential', 'professional', 'enterprise'];
+                const planName = planNames[index] || `plan_${index + 1}`;
+                
+                card.addEventListener('mouseenter', function() {
+                    trackEvent('hover_pricing_plan', 'engagement', planName);
+                });
+                
+                // Track feature list engagement
+                const featuresList = card.querySelector('.features-list');
+                if (featuresList) {
+                    featuresList.addEventListener('scroll', function() {
+                        trackEvent('scroll_features', 'engagement', planName);
+                    });
+                }
+            });
+            
+            // Track FAQ interactions
+            document.querySelectorAll('.faq-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    trackEvent('click_faq', 'engagement', `faq_${index + 1}`);
+                });
+            });
+            
+            // Track price comparison behavior
+            let priceComparisonStartTime = null;
+            document.querySelectorAll('.price').forEach(price => {
+                price.addEventListener('mouseenter', function() {
+                    if (!priceComparisonStartTime) {
+                        priceComparisonStartTime = Date.now();
+                    }
+                });
+            });
+            
+            // Track time spent comparing prices
+            window.addEventListener('beforeunload', function() {
+                if (priceComparisonStartTime) {
+                    const comparisonTime = Math.round((Date.now() - priceComparisonStartTime) / 1000);
+                    if (comparisonTime > 3) {
+                        trackEvent('price_comparison_time', 'engagement', comparisonTime.toString());
+                    }
+                }
+            });
+        });
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

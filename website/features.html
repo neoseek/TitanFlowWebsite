@@ -11,6 +11,27 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://neoseek.github.io/TitanFlow/features.html">
     <title>Features - TitanFlow Customer Automation</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'Features',
+            page_location: window.location.href
+        });
+        
+        // Track button clicks
+        function trackEvent(action, category = 'engagement') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': window.location.pathname
+            });
+        }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -620,8 +641,11 @@
 
         <section class="cta-section">
             <div class="container">
-                <h3>Ready to get started?</h3>
-                <a href="pricing.html" class="btn btn-primary">View Pricing</a>
+                <h3>Ready to automate your customer workflows?</h3>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <button onclick="window.location.href='mailto:hello@titanflow.tech?subject=Early%20Access%20Request&body=Hi,%0A%0AI%27m%20interested%20in%20early%20access%20to%20TitanFlow.%0A%0ABusiness:%20%0AIndustry:%20%0ACurrent%20challenges:%20%0A%0AThanks!'" class="btn btn-primary">Request Early Access</button>
+                    <a href="pricing.html" onclick="trackEvent('view_pricing', 'navigation')" class="btn" style="background: transparent; border: 2px solid rgba(255, 255, 255, 0.3); color: white;">View Pricing</a>
+                </div>
             </div>
         </section>
     </main>
@@ -632,6 +656,24 @@
         </div>
     </footer>
 
+    <script>
+        // Page Analytics
+        function trackPageView() {
+            trackEvent('page_view', 'navigation');
+        }
+
+        // Feature interaction tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            trackPageView();
+            
+            // Track feature card interactions
+            document.querySelectorAll('.feature-item').forEach((item, index) => {
+                item.addEventListener('mouseenter', function() {
+                    trackEvent('hover_feature_detail', 'engagement', `feature_${index + 1}`);
+                });
+            });
+        });
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
