@@ -16,7 +16,7 @@
     <title>TitanFlow - Business Workflow Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0A1628;
@@ -442,6 +442,186 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
+        /* Integrated Phone Animation - Subtle Background */
+        .phone-demo-container {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.6;
+            z-index: 5;
+            pointer-events: none;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+
+        .phone-demo {
+            width: 200px;
+            height: 380px;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16162a 100%);
+            border-radius: 28px;
+            padding: 8px;
+            box-shadow: 
+                0 15px 50px -10px rgba(0, 0, 0, 0.3),
+                0 0 30px -5px rgba(0, 212, 170, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-demo::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 18px;
+            background: #0a0a14;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(160deg, #0A1628 0%, #1E3A5F 50%, #0F2744 100%);
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Platform Indicators */
+        .platform-indicators {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 20;
+        }
+
+        .platform-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.8s ease;
+        }
+
+        .platform-dot.active {
+            background: #00d4aa;
+            box-shadow: 0 0 10px rgba(0, 212, 170, 0.5);
+            animation: platformPulse 2s infinite;
+        }
+
+        /* Chat Bubbles Animation */
+        .chat-bubbles {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 12px;
+            font-size: 8px;
+            padding: 6px 8px;
+            opacity: 0;
+            max-width: 70%;
+            line-height: 1.3;
+        }
+
+        .bubble.customer {
+            background: rgba(0, 212, 170, 0.9);
+            color: #0a1628;
+            right: 12px;
+            animation: bubbleInRight 0.6s ease-out forwards;
+        }
+
+        .bubble.business {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            left: 12px;
+            animation: bubbleInLeft 0.6s ease-out forwards;
+        }
+
+        .bubble:nth-child(1) { top: 20px; animation-delay: 1s; }
+        .bubble:nth-child(2) { top: 45px; animation-delay: 2.5s; }
+        .bubble:nth-child(3) { top: 80px; animation-delay: 4s; }
+        .bubble:nth-child(4) { top: 115px; animation-delay: 5.5s; }
+
+        .typing-indicator {
+            position: absolute;
+            left: 12px;
+            top: 150px;
+            display: flex;
+            gap: 2px;
+            padding: 6px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            opacity: 0;
+            animation: typingShow 1s ease-out 3.5s forwards;
+        }
+
+        .typing-dot {
+            width: 3px;
+            height: 3px;
+            background: #64748b;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Animations */
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-10px); }
+        }
+
+        @keyframes platformPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.3); }
+        }
+
+        @keyframes bubbleInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(20px) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes bubbleInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-20px) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        @keyframes typingShow {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
         /* Footer */
         footer {
             position: relative;
@@ -486,6 +666,10 @@
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .phone-demo-container {
+                display: none;
             }
         }
 
@@ -532,14 +716,6 @@
     </style>
 </head>
 <body>
-    <!-- Background Effects -->
-    <div class="bg-waves">
-        <div class="wave wave-1"></div>
-        <div class="wave wave-2"></div>
-        <div class="glow-orb glow-1"></div>
-        <div class="glow-orb glow-2"></div>
-    </div>
-
     <header>
         <nav>
             <div class="container">
@@ -547,7 +723,7 @@
                     <h1>TitanFlow</h1>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="features.html">Features</a></li>
                     <li><a href="pricing.html">Pricing</a></li>
                 </ul>
@@ -558,12 +734,37 @@
     <main>
         <section class="hero">
             <div class="hero-decoration"></div>
+            
+            <!-- Subtle Phone Animation Background -->
+            <div class="phone-demo-container">
+                <div class="phone-demo">
+                    <div class="phone-screen">
+                        <div class="platform-indicators">
+                            <div class="platform-dot" id="dot-1"></div>
+                            <div class="platform-dot" id="dot-2"></div>
+                            <div class="platform-dot" id="dot-3"></div>
+                        </div>
+                        <div class="chat-bubbles">
+                            <div class="bubble customer">Hi! My AC stopped working</div>
+                            <div class="bubble business">✅ Tech scheduled for today 2-4 PM</div>
+                            <div class="bubble customer">Annual maintenance?</div>
+                            <div class="bubble business">📅 Inspection booked for Dec 5</div>
+                            <div class="typing-indicator">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="container">
-                <h2>Manage Your Business Flow with TitanFlow</h2>
-                <p>The modern SaaS platform designed to streamline your workflow and boost productivity with intelligent automation and real-time insights</p>
+                <h2>AI-Powered Customer Communication</h2>
+                <p>TitanFlow automates your customer interactions across SMS, email, and social media with intelligent AI responses that work 24/7</p>
                 <div class="cta-buttons">
                     <a href="pricing.html" class="btn btn-primary">Get Started</a>
-                    <a href="features.html" class="btn btn-secondary">Learn More</a>
+                    <a href="features.html" class="btn btn-secondary">Watch Demo</a>
                 </div>
             </div>
         </section>
@@ -573,16 +774,16 @@
                 <h3>Why Choose TitanFlow?</h3>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h4>Easy Integration</h4>
-                        <p>Seamlessly integrate with your existing tools and workflows. Connect to popular platforms in minutes and start automating your business processes immediately.</p>
+                        <h4>Multi-Platform AI</h4>
+                        <p>One AI assistant handles all customer communications across SMS, email, Instagram DMs, and more. Respond instantly on every channel with intelligent automation.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Real-time Analytics</h4>
-                        <p>Track your business metrics in real-time with powerful dashboards. Make data-driven decisions with comprehensive insights and customizable reports.</p>
+                        <h4>24/7 Availability</h4>
+                        <p>Never miss a customer inquiry again. TitanFlow's AI works around the clock, booking appointments, answering questions, and qualifying leads while you sleep.</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Scalable Solution</h4>
-                        <p>Grow your business without worrying about infrastructure. Our platform scales effortlessly as your team and customer base expand.</p>
+                        <h4>Smart Integration</h4>
+                        <p>Seamlessly connects with your existing CRM, calendar, and business tools. Set up in minutes and start automating customer interactions immediately.</p>
                     </div>
                 </div>
             </div>
@@ -595,6 +796,53 @@
         </div>
     </footer>
 
+    <script>
+        // Subtle Phone Animation Controller
+        class PhoneDemoAnimator {
+            constructor() {
+                this.platformDots = document.querySelectorAll('.platform-dot');
+                this.currentDot = 0;
+                this.init();
+            }
+            
+            init() {
+                // Start the platform switching animation
+                this.animatePlatforms();
+                
+                // Restart animation every 12 seconds
+                setInterval(() => {
+                    this.animatePlatforms();
+                }, 12000);
+            }
+            
+            animatePlatforms() {
+                // Reset all dots
+                this.platformDots.forEach(dot => dot.classList.remove('active'));
+                
+                // Activate dots one by one with delay
+                let delay = 0;
+                this.platformDots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.classList.add('active');
+                        
+                        // Remove after 2 seconds
+                        setTimeout(() => {
+                            dot.classList.remove('active');
+                        }, 2000);
+                    }, delay);
+                    delay += 2500;
+                });
+            }
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            const phoneDemo = document.querySelector('.phone-demo-container');
+            if (phoneDemo) {
+                new PhoneDemoAnimator();
+            }
+        });
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
