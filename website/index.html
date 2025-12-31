@@ -1294,6 +1294,12 @@
                 <div class="form-group">
                     <label for="email">Business Email</label>
                     <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="modalEmailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                    <div class="error-message" id="modalPhoneError">Please enter a valid phone number</div>
                 </div>
                 <div class="form-group">
                     <label for="company">Company Name</label>
@@ -1372,6 +1378,35 @@
             event.preventDefault();
             
             const formData = new FormData(event.target);
+            const email = formData.get('email').trim();
+            const phone = formData.get('phone').trim();
+            
+            // Clear previous errors
+            hideFieldError('email', 'modalEmailError');
+            hideFieldError('phone', 'modalPhoneError');
+            
+            let isValid = true;
+            
+            // Validate email
+            const emailValidation = validateEmail(email);
+            if (!emailValidation.isValid) {
+                showFieldError('email', 'modalEmailError', emailValidation.message);
+                isValid = false;
+            }
+            
+            // Validate phone
+            const phoneValidation = validatePhone(phone);
+            if (!phoneValidation.isValid) {
+                showFieldError('phone', 'modalPhoneError', phoneValidation.message);
+                isValid = false;
+            }
+            
+            // If validation fails, don't submit
+            if (!isValid) {
+                trackEvent('form_validation_error', 'conversion', 'detailed_form');
+                return;
+            }
+            
             const data = {};
             
             // Collect form data
@@ -1379,8 +1414,11 @@
                 data[key] = value;
             }
             
+            // Use validated phone number
+            data.phone = phoneValidation.cleanPhone;
+            
             // Add metadata
-            data.source = 'website';
+            data.source = 'detailed_form';
             data.page = 'home';
             data.timestamp = new Date().toISOString();
             data.userAgent = navigator.userAgent;
@@ -1394,9 +1432,9 @@
             leads.push(data);
             localStorage.setItem('titanflow_leads', JSON.stringify(leads));
             
-            // Show success message
-            showSuccessMessage('Thanks! We\'ll be in touch within 24 hours.');
+            // Close modal and show thank you page
             closeContactModal();
+            showThankYouPage(email, phoneValidation.cleanPhone);
             
             // Reset form
             event.target.reset();
