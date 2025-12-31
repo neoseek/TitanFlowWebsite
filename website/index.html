@@ -1011,6 +1011,301 @@
             display: block;
         }
 
+        /* Problem/Solution Section Styles */
+        .problem-solution {
+            position: relative;
+            z-index: 10;
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .problem-solution .container {
+            display: block;
+        }
+
+        .problem-section {
+            margin-bottom: 6rem;
+        }
+
+        .problem-content h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff6b6b;
+            line-height: 1.1;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05));
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            display: block;
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            animation: slideUp 0.6s ease-out 0.6s both;
+        }
+
+        .pain-point {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8787);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pain-point:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.1);
+        }
+
+        .pain-point:hover::before {
+            opacity: 1;
+        }
+
+        .pain-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .pain-text h4 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .pain-text p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .solution-section {
+            margin-top: 6rem;
+        }
+
+        .solution-content h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-green), #00C78A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+        }
+
+        .solution-intro {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.8s ease-out 1s both;
+        }
+
+        .solution-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            animation: slideUp 0.6s ease-out 1.2s both;
+        }
+
+        .benefit-item {
+            background: linear-gradient(145deg, var(--card-bg), rgba(0, 229, 160, 0.05));
+            border: 1px solid rgba(0, 229, 160, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), #00C78A);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 229, 160, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 229, 160, 0.15);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .benefit-content h4 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-result {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            display: block;
+        }
+
+        .urgency-box {
+            background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), rgba(30, 58, 95, 0.1));
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out 1.4s both;
+        }
+
+        .urgency-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-green), var(--accent-purple), var(--accent-green));
+            background-size: 400% 400%;
+            z-index: -1;
+            border-radius: 20px;
+            animation: gradient-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gradient-pulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .urgency-content h4 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .urgency-content p {
+            color: #f8fafc;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .urgency-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .urgency-action span {
+            color: #e2e8f0;
+            font-weight: 600;
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-style: italic;
+        }
+
+        .urgency-action .btn {
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .urgency-action .btn:hover {
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
+        }
+
         /* Footer */
         footer {
             position: relative;
@@ -1059,6 +1354,48 @@
 
             .phone-demo-container {
                 display: none;
+            }
+
+            /* Mobile Problem/Solution Section */
+            .problem-solution {
+                padding: 4rem 5% 5rem;
+            }
+
+            .problem-content h3,
+            .solution-content h3 {
+                font-size: 2.2rem;
+            }
+
+            .problem-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .pain-points,
+            .solution-benefits {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pain-point,
+            .benefit-item {
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .urgency-box {
+                padding: 2rem;
+            }
+
+            .urgency-action {
+                gap: 1rem;
+            }
+
+            .urgency-action .btn {
+                width: 100%;
             }
 
             /* Mobile Modal Optimization */
@@ -1157,6 +1494,107 @@
 
             .feature-card {
                 padding: 2rem 1.5rem;
+            }
+
+            /* Mobile Problem/Solution Section */
+            .problem-solution {
+                padding: 3rem 5% 4rem;
+            }
+
+            .problem-section {
+                margin-bottom: 4rem;
+            }
+
+            .solution-section {
+                margin-top: 4rem;
+            }
+
+            .problem-content h3,
+            .solution-content h3 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 2rem;
+            }
+
+            .solution-intro {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+
+            .problem-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .stat-item {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-text {
+                font-size: 1rem;
+            }
+
+            .pain-points,
+            .solution-benefits {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pain-point,
+            .benefit-item {
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .pain-icon,
+            .benefit-icon {
+                font-size: 1.8rem;
+                margin: 0 auto;
+            }
+
+            .pain-text h4,
+            .benefit-content h4 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .pain-text p,
+            .benefit-content p {
+                font-size: 0.95rem;
+            }
+
+            .benefit-result {
+                font-size: 0.85rem;
+                margin-top: 0.5rem;
+            }
+
+            .urgency-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .urgency-content h4 {
+                font-size: 1.3rem;
+            }
+
+            .urgency-content p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .urgency-action {
+                gap: 1rem;
+            }
+
+            .urgency-action .btn {
+                width: 100%;
+                padding: 1rem 2rem;
             }
 
             /* Enhanced Mobile Modal */
@@ -1390,6 +1828,95 @@
                 <div class="cta-buttons">
                     <button onclick="openContactModal('early-access')" class="btn btn-primary">Get Early Access</button>
                     <a href="features.html" onclick="trackEvent('view_features')" class="btn btn-secondary">See How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem/Solution Section -->
+        <section class="problem-solution">
+            <div class="container">
+                <div class="problem-section">
+                    <div class="problem-content">
+                        <h3>Every Minute You Don't Respond, Your Competitors Do</h3>
+                        <div class="problem-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">78%</span>
+                                <span class="stat-text">of customers go with the first business that responds</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$47K</span>
+                                <span class="stat-text">average annual revenue lost per slow response</span>
+                            </div>
+                        </div>
+                        <div class="pain-points">
+                            <div class="pain-point">
+                                <div class="pain-icon">😰</div>
+                                <div class="pain-text">
+                                    <h4>Missing Hot Leads at 2 AM</h4>
+                                    <p>Your best prospects contact you after hours, but by morning they've already hired your competitor who responded instantly.</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <div class="pain-icon">💸</div>
+                                <div class="pain-text">
+                                    <h4>Revenue Bleeding Through Cracks</h4>
+                                    <p>Qualified leads slip away because follow-ups get buried in your inbox. Each missed follow-up is $500-$2000+ walking out the door.</p>
+                                </div>
+                            </div>
+                            <div class="pain-point">
+                                <div class="pain-icon">🔥</div>
+                                <div class="pain-text">
+                                    <h4>Your Team is Drowning</h4>
+                                    <p>Your best people are stuck sending the same messages over and over instead of closing deals and serving customers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-section">
+                    <div class="solution-content">
+                        <h3>What If You Never Missed Another Lead Again?</h3>
+                        <p class="solution-intro">Imagine if every prospect got an instant, professional response—24/7, 365 days a year. No more lost leads, no more competitor advantage, no more revenue slipping away.</p>
+                        
+                        <div class="solution-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">⚡</div>
+                                <div class="benefit-content">
+                                    <h4>Instant Response = Instant Advantage</h4>
+                                    <p>Respond to new leads within 60 seconds, automatically. Qualify prospects while your competitors are still sleeping.</p>
+                                    <span class="benefit-result">→ 300% more leads converted</span>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🎯</div>
+                                <div class="benefit-content">
+                                    <h4>Never Drop the Ball Again</h4>
+                                    <p>Automated follow-ups ensure every prospect gets consistent nurturing until they're ready to buy or clearly not interested.</p>
+                                    <span class="benefit-result">→ 40% increase in conversion rates</span>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🚀</div>
+                                <div class="benefit-content">
+                                    <h4>Scale Without Burning Out</h4>
+                                    <p>Handle 10x more leads with the same team. Your staff focuses on closing deals, not typing the same messages.</p>
+                                    <span class="benefit-result">→ $50K+ more revenue per employee</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="urgency-box">
+                            <div class="urgency-content">
+                                <h4>� You Already Know What You Need to Do</h4>
+                                <p>Smart business owners like you recognize opportunities when they see them. You're here because you value growth and efficiency—two things that set successful businesses apart.</p>
+                                <div class="urgency-action">
+                                    <span>Take your time. Explore what's possible. The right decision will become clear.</span>
+                                    <button onclick="openContactModal('problem-solution')" class="btn btn-primary">Learn More About Your Options</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
