@@ -241,6 +241,72 @@
             background-clip: text;
         }
 
+        .rotating-benefit {
+            display: inline-block;
+            position: relative;
+            color: var(--accent-green);
+            background: linear-gradient(135deg, var(--accent-green), #00C78A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: benefitRotate 8s infinite;
+        }
+
+        .rotating-benefit::after {
+            content: 'Lead!';
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: textRotate 8s infinite;
+        }
+
+        @keyframes textRotate {
+            0%, 20% { content: 'Lead!'; }
+            25%, 45% { content: 'Follow-up!'; }
+            50%, 70% { content: 'Booking!'; }
+            75%, 95% { content: 'Customer!'; }
+            100% { content: 'Lead!'; }
+        }
+
+        @keyframes benefitRotate {
+            0%, 20% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+            22%, 23% { 
+                transform: translateY(-10px); 
+                opacity: 0.7; 
+            }
+            25%, 45% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+            47%, 48% { 
+                transform: translateY(-10px); 
+                opacity: 0.7; 
+            }
+            50%, 70% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+            72%, 73% { 
+                transform: translateY(-10px); 
+                opacity: 0.7; 
+            }
+            75%, 95% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+            97%, 98% { 
+                transform: translateY(-10px); 
+                opacity: 0.7; 
+            }
+            100% { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+
         .hero p {
             font-size: 1.35rem;
             line-height: 1.6;
@@ -1823,7 +1889,7 @@
             </div>
             
             <div class="container">
-                <h2>Never Miss Another Lead! Respond Instantly 24/7</h2>
+                <h2>Never Miss Another <span class="rotating-benefit">Lead!</span> Respond Instantly 24/7</h2>
                 <p>Automatically respond to new leads from SMS, email, website forms, and social media. Qualify prospects instantly and hand off hot leads to your team.</p>
                 <div class="cta-buttons">
                     <button onclick="openContactModal('early-access')" class="btn btn-primary">Get Early Access</button>
