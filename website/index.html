@@ -1078,6 +1078,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+            align-items: start;
+            width: 100%;
         }
 
         /* Early Access Banner */
@@ -1860,6 +1862,7 @@
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                margin-bottom: 1rem;
             }
 
             /* Early Access Banner Mobile */
@@ -2092,6 +2095,7 @@
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                margin-bottom: 1rem;
             }
 
             /* Enhanced Early Access Banner Mobile */
@@ -2659,22 +2663,22 @@
             const phone = formData.get('phone').trim();
             
             // Clear previous errors
-            hideFieldError('email', 'modalEmailError');
-            hideFieldError('phone', 'modalPhoneError');
+            hideFieldError('email', 'modal-email-error');
+            hideFieldError('phone', 'modal-phone-error');
             
             let isValid = true;
             
             // Validate email
             const emailValidation = validateEmail(email);
             if (!emailValidation.isValid) {
-                showFieldError('email', 'modalEmailError', emailValidation.message);
+                showFieldError('email', 'modal-email-error', emailValidation.message);
                 isValid = false;
             }
             
             // Validate phone
             const phoneValidation = validatePhone(phone);
             if (!phoneValidation.isValid) {
-                showFieldError('phone', 'modalPhoneError', phoneValidation.message);
+                showFieldError('phone', 'modal-phone-error', phoneValidation.message);
                 isValid = false;
             }
             
@@ -2683,6 +2687,17 @@
                 trackEvent('form_validation_error', 'conversion', 'detailed_form');
                 return;
             }
+            
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (!submitButton) {
+                console.error('Submit button not found');
+                return;
+            }
+            
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
             
             // Update form data with validated phone
             formData.set('phone', phoneValidation.cleanPhone);
@@ -2729,6 +2744,12 @@
             }).catch(error => {
                 console.error('Form submission error:', error);
                 showSuccessMessage('There was an error submitting the form. Please try again.');
+            }).finally(() => {
+                // Reset button state
+                if (submitButton) {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }
             });
         }
 
@@ -2767,17 +2788,23 @@
             const field = document.getElementById(fieldId);
             const error = document.getElementById(errorId);
             
-            field.classList.add('form-error');
-            error.textContent = message;
-            error.classList.add('show');
+            if (field && error) {
+                field.classList.add('form-error');
+                field.setAttribute('aria-invalid', 'true');
+                error.textContent = message;
+                error.classList.add('show');
+            }
         }
 
         function hideFieldError(fieldId, errorId) {
             const field = document.getElementById(fieldId);
             const error = document.getElementById(errorId);
             
-            field.classList.remove('form-error');
-            error.classList.remove('show');
+            if (field && error) {
+                field.classList.remove('form-error');
+                field.setAttribute('aria-invalid', 'false');
+                error.classList.remove('show');
+            }
         }
 
         // Early Access Form Submission with Formspree integration
