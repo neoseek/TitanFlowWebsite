@@ -1078,8 +1078,26 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            align-items: start;
+            align-items: stretch;
             width: 100%;
+        }
+
+        .form-row .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            height: 100%;
+        }
+
+        .form-row .form-group label {
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+
+        .form-row .form-group input,
+        .form-row .form-group select {
+            flex: 1;
+            min-height: 48px;
         }
 
         /* Early Access Banner */
