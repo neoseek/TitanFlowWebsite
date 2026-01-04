@@ -23,10 +23,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add active class to current page in navigation
     const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-links a');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navList = document.querySelector('.nav-links');
+
+    function setActiveLink(targetHash) {
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === targetHash);
+        });
+    }
+
+    if (window.location.hash) {
+        setActiveLink(window.location.hash);
+    }
+
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href === currentLocation || (currentLocation === '' && href === 'index.html')) {
             link.classList.add('active');
+        }
+
+        link.addEventListener('click', () => {
+            if (navList) {
+                navList.classList.remove('open');
+            }
+            if (menuToggle) {
+                menuToggle.classList.remove('active');
+            }
+            if (href.startsWith('#')) {
+                setActiveLink(href);
+            }
+        });
+    });
+
+    if (menuToggle && navList) {
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navList.classList.toggle('open');
+        });
+    }
+
+    window.addEventListener('hashchange', () => {
+        if (window.location.hash) {
+            setActiveLink(window.location.hash);
         }
     });
 
