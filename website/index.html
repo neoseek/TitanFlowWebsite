@@ -52,7 +52,9 @@
             --accent-purple: #6366F1;
             --text-white: #FFFFFF;
             --text-light: #B8C5D6;
+            --text-muted: rgba(184, 197, 214, 0.75);
             --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.12);
             --glow-green: rgba(0, 229, 160, 0.3);
         }
 
@@ -2371,6 +2373,134 @@
 
             .final-cta-trust-item { display: flex; align-items: center; gap: 6px; }
             .final-cta-trust-item svg { width: 16px; height: 16px; color: var(--accent-green); }
+
+            /* Early Access Waitlist CTA */
+        .early-access { position: relative; z-index: 10; padding: 80px 0; }
+
+        .early-access .container {
+            display: block;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            width: 100%;
+        }
+
+        .early-access-banner {
+            background: linear-gradient(145deg, rgba(0, 229, 160, 0.10), rgba(99, 102, 241, 0.10));
+            border: 1px solid rgba(0, 229, 160, 0.30);
+            border-radius: 28px;
+            padding: 56px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .early-access-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-green));
+        }
+
+        .early-access-banner h2 {
+            font-size: clamp(26px, 3.6vw, 38px);
+            margin-bottom: 12px;
+        }
+
+        .early-access-banner p {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 680px;
+            margin: 0 auto 28px;
+            line-height: 1.7;
+        }
+
+        .early-access-form {
+            max-width: 720px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .early-access-form .form-group { margin-bottom: 0; text-align: left; }
+        .early-access-form label { display: none; }
+
+        .early-access-form input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .early-access-form input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .early-access-form input::placeholder { color: var(--text-muted); }
+
+        .early-access-form .btn {
+            height: 48px;
+            padding: 0 22px;
+            white-space: nowrap;
+        }
+
+        .early-access-note {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Early Access (Responsive) */
+        @media (max-width: 968px) {
+            .early-access { padding: 64px 0; }
+
+            .early-access-banner {
+                padding: 40px 28px;
+                border-radius: 22px;
+            }
+
+            .early-access-form {
+                grid-template-columns: 1fr;
+            }
+
+            .early-access-form .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .early-access-banner {
+                margin: 0;
+                padding: 32px 20px;
+                border-radius: 18px;
+            }
+
+            /* Override legacy mobile centering rules for the new form markup */
+            .early-access .early-access-form {
+                align-items: stretch;
+                justify-content: initial;
+            }
+
+            .early-access .early-access-form > div {
+                align-items: stretch;
+            }
+
+            .early-access .early-access-form .form-group {
+                text-align: left;
+            }
+        }
+
     </style>
 </head>
 <body>
