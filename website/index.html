@@ -2667,7 +2667,7 @@
                 <div class="early-access-banner">
                     <h2>Join the Early Access Waitlist</h2>
                     <p>Be the first to know when TitanFlow launches in your area. Get priority onboarding, early features, and launch pricing.</p>
-                    <form class="early-access-form" id="earlyAccessForm" onsubmit="submitEarlyAccess(event)">
+                    <form class="early-access-form" id="earlyAccessForm" action="https://formspree.io/f/xzdzervn" method="POST" onsubmit="submitEarlyAccess(event)">
                         <div class="form-group">
                             <label for="earlyAccessEmail">Business Email</label>
                             <input type="email" id="earlyAccessEmail" name="email" placeholder="you@company.com" required>
@@ -3037,22 +3037,22 @@
             const phone = document.getElementById('earlyAccessPhone').value.trim();
             
             // Clear previous errors
-            hideFieldError('earlyAccessEmail', 'emailError');
-            hideFieldError('earlyAccessPhone', 'phoneError');
+            hideFieldError('earlyAccessEmail', 'earlyAccessEmailError');
+            hideFieldError('earlyAccessPhone', 'earlyAccessPhoneError');
             
             let isValid = true;
             
             // Validate email
             const emailValidation = validateEmail(email);
             if (!emailValidation.isValid) {
-                showFieldError('earlyAccessEmail', 'emailError', emailValidation.message);
+                showFieldError('earlyAccessEmail', 'earlyAccessEmailError', emailValidation.message);
                 isValid = false;
             }
             
             // Validate phone
             const phoneValidation = validatePhone(phone);
             if (!phoneValidation.isValid) {
-                showFieldError('earlyAccessPhone', 'phoneError', phoneValidation.message);
+                showFieldError('earlyAccessPhone', 'earlyAccessPhoneError', phoneValidation.message);
                 isValid = false;
             }
             
