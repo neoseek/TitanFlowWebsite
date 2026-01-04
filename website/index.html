@@ -233,6 +233,14 @@
             font-weight: 800;
             font-size: 1.5rem;
             letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .logo .word-titan {
+            color: var(--text-white);
+        }
+
+        .logo .word-flow {
             background: linear-gradient(135deg, var(--accent-green), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2508,7 +2516,9 @@
         <nav>
             <div class="container">
                 <div class="logo">
-                    <h1>TitanFlow</h1>
+                    <h1 aria-label="TitanFlow">
+                        <span class="word-titan">Titan</span><span class="word-flow">Flow</span>
+                    </h1>
                 </div>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span></span><span></span><span></span>
