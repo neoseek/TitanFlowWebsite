@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TitanFlow - Thank you" />
+  <title>TitanFlow — Thank You</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M9KSSN9HNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-M9KSSN9HNL', {
+      page_title: 'Thank You',
+      page_location: window.location.href
+    });
+
+    function trackEvent(action, category = 'engagement', label = window.location.pathname) {
+      gtag('event', action, {
+        event_category: category,
+        event_label: label
+      });
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-blue: #0A1628;
+      --secondary-blue: #1E3A5F;
+      --accent-green: #00E5A0;
+      --accent-purple: #6366F1;
+      --text-white: #FFFFFF;
+      --text-light: #B8C5D6;
+      --text-muted: rgba(184, 197, 214, 0.75);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(160deg, #0A1628 0%, #1E3A5F 50%, #0F2744 100%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: linear-gradient(145deg, rgba(99, 102, 241, 0.10), rgba(0, 229, 160, 0.10));
+      border: 1px solid rgba(0, 229, 160, 0.25);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-green));
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-green), #00C78A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-blue);
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      box-shadow: 0 18px 60px rgba(0, 229, 160, 0.25);
+    }
+
+    h1 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 900;
+      font-size: clamp(26px, 3.6vw, 40px);
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--text-light);
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0 auto 22px;
+      max-width: 560px;
+    }
+
+    .details {
+      margin: 18px auto 26px;
+      max-width: 520px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: left;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .row:last-child { border-bottom: none; }
+
+    .k { color: var(--text-muted); }
+    .v { color: var(--text-white); font-weight: 600; overflow-wrap: anywhere; }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-green), #00C78A);
+      color: var(--primary-blue);
+      box-shadow: 0 10px 30px rgba(0, 229, 160, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(0, 229, 160, 0.28);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-white);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-green);
+      background: rgba(0, 229, 160, 0.08);
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 28px 18px; border-radius: 18px; }
+      .details { padding: 14px; }
+      .row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="icon">✓</div>
+    <h1>Thanks — you’re in.</h1>
+    <p class="subtitle" id="subtitle">We received your details. We’ll follow up shortly with next steps.</p>
+
+    <section class="details" aria-label="Confirmation details">
+      <div class="row"><span class="k">Email</span><span class="v" id="confirmedEmail">—</span></div>
+      <div class="row"><span class="k">Phone</span><span class="v" id="confirmedPhone">—</span></div>
+      <div class="row"><span class="k">Source</span><span class="v" id="confirmedSource">—</span></div>
+    </section>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="index.html" onclick="trackEvent('thank_you_return_home', 'navigation')">Return to homepage</a>
+      <a class="btn btn-secondary" href="features.html" onclick="trackEvent('thank_you_view_features', 'navigation')">See how it works</a>
+    </div>
+  </main>
+
+  <script>
+    (function initThankYou() {
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email') || '';
+      const phone = params.get('phone') || '';
+      const source = params.get('source') || '';
+
+      const emailEl = document.getElementById('confirmedEmail');
+      const phoneEl = document.getElementById('confirmedPhone');
+      const sourceEl = document.getElementById('confirmedSource');
+
+      if (email) emailEl.textContent = email;
+      if (phone) phoneEl.textContent = phone;
+      if (source) sourceEl.textContent = source;
+
+      if (source) {
+        trackEvent('view_thank_you', 'conversion', source);
+      } else {
+        trackEvent('view_thank_you', 'conversion');
+      }
+
+      // If no params, keep it generic.
+    })();
+  </script>
+</body>
+</html>

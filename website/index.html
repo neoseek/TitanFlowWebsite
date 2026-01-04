@@ -2947,9 +2947,10 @@
                     leads.push(data);
                     localStorage.setItem('titanflow_leads', JSON.stringify(leads));
                     
-                    // Close modal and show thank you page
+                    // Close modal and redirect to thank-you page
                     closeContactModal();
-                    showThankYouPage(email, phoneValidation.cleanPhone);
+                    const thankYouUrl = `thank-you.html?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phoneValidation.cleanPhone)}&source=${encodeURIComponent('detailed_form')}`;
+                    window.location.assign(thankYouUrl);
                     
                     // Reset form
                     form.reset();
@@ -3097,8 +3098,9 @@
                     leads.push(data);
                     localStorage.setItem('titanflow_leads', JSON.stringify(leads));
                     
-                    // Show thank you page
-                    showThankYouPage(email, phoneValidation.cleanPhone);
+                    // Redirect to thank-you page
+                    const thankYouUrl = `thank-you.html?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phoneValidation.cleanPhone)}&source=${encodeURIComponent('early_access')}`;
+                    window.location.assign(thankYouUrl);
                     
                     // Reset form
                     form.reset();
